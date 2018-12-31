@@ -20,6 +20,7 @@ void Stepper::init(byte stepPin, byte dirPin, byte enablePin) {
   stepState = false;
   dir = 0;
   en = false;
+  al = true;
 
   maxFeedrate = 300;
   accelration = 3000;
@@ -64,8 +65,8 @@ void Stepper::setEnabled(boolean enabled) {
     digitalWrite(pin_enable, !en);
   }
 //set enabled-state
-void Stepper::setAllowed(boolean enabled) {
-    en = enabled;
+void Stepper::setAllowed(boolean allowed) {
+    al = allowed;
   }
 
 //set step-state
@@ -85,7 +86,6 @@ void Stepper::setStopFeedrate(float f) {
   }
 
 //set diameter of wheel; can be dynamic
-//use pitch*amount of threads/PI() for thread pitch
 void Stepper::setDiameter(float d) {
   diameter = d;
   mmPerStep = diameter*PI/stepsPerRotation;
@@ -154,7 +154,7 @@ boolean Stepper::halfStep() {
 }
 
 void Stepper::switchStep() {
-	if (en) {
+	if (en && al) {
 		stepState = !stepState;
 		digitalWrite(pin_step, stepState);
 	}
@@ -169,6 +169,10 @@ void Stepper::executeHalfStep() {
 //get enabled-state for stepper
 boolean Stepper::getEnabled() {
     return en;
+  }
+//get enabled-state for stepper
+boolean Stepper::getAllowed() {
+    return al;
   }
   
 //get position-state

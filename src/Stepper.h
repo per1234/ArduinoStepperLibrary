@@ -1,6 +1,6 @@
 /*
   Stepper.h - Library for easy stepper control with a4988 driver.
-  Created by Sebastian G. (sebiscodes@gmail.com) Sulgen, October 13, 2018.
+  Created by Sebastian G. Sulgen, October 13, 2018.
 */
 #ifndef Stepper_h
 #define Stepper_h
@@ -16,7 +16,7 @@ class Stepper
 
   void setDir(byte direction); // 0/1
   void setEnabled(boolean enabled);
-  void setAllowed(boolean enabled);
+  void setAllowed(boolean allowed);
   void setStepState(boolean state);
   void setFeedrate(float f); // m/s
   void setStopFeedrate(float f); // m/s
@@ -45,6 +45,7 @@ class Stepper
   boolean stepState;
   byte dir;
   boolean en;
+  boolean al;
 
   float maxFeedrate = 300; //mm/s
   float stopFeedrate = 10; //mm/s
