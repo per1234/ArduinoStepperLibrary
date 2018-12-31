@@ -10,19 +10,13 @@ void setup() {
   //setup stepper:
   stepper = Stepper(); //Create stepper
   stepper.init(pin_step, pin_dir, pin_en); //Init stepper
-  stepper.setStepsPerRotation(200); //Set steps per rotation
-  stepper.setDiameter(60); //mm
-  //stepper.setDiameter(8.0/PI); //For Thread: T8; Pitch:2mm; 4 Threads; 2*4=8mm pitch
-  stepper.setDir(1); //Set direction
-  stepper.setFeedrate(0.05f); //Set feedrate in m/s
-  stepper.setAccelration(0.025f); //Set accelration in m/(s*s)
-  stepper.setStopFeedrate(0.025f); //Set negative accelration in m/(s*s)
   stepper.setEnabled(true); //Enable stepper for control
   stepper.setAllowed(true); //If allowed is false, but enabled true, the stepper will hold on position
   //setup of stepper until here
-
-  stepper.setPosition(300); //300mm to drive
-  while(stepper.halfStep()); //Run Stepper as long as position is driven
+  for (int i = 0; i < 400;i++) { //make 200 steps
+    stepper.switchStep(); //Switch step pin from high to low or from low to high
+    delayMicroseconds(1000);
+  }
 }
 
 void loop() {
