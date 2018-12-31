@@ -8,10 +8,14 @@ Constructor:
 ◦ Use init()-method to initialize the driver
 
 Methods:
+
+• boolean getAllowed()
+◦ Get allowed-state of driver
+
 • boolean getEnabled()
 ◦ Get enabled-state of driver
 
-• boolean getOnPosition ()
+• boolean getOnPosition()
 ◦ Check if driver is on position
 
 • byte getDir()
@@ -39,6 +43,13 @@ Methods:
 • void setDir(byte direction)
 ◦ Set direction of driver
 
+• void setFeedrate(float feedrate)
+◦ Set feedrate in m/s
+
+• void setAllowed(boolean allowed)
+◦ Set allowed state for driver
+◦ If this is false, the stepper would stay fixes on position (only used for switchStep())
+
 • void setEnabled(boolean enabled)
 ◦ Set enabled state for driver•void setFeedrate(float feedrate)
 ◦ Set feedrate in m/s
@@ -55,6 +66,9 @@ Methods:
 ◦ Set driver state to low or high
 ◦ Can be used to control stepper manually
 
-•void setStopFeedrate(float feedrate)
+• void setStopFeedrate(float feedrate)
 ◦ Set minimum feedrate by braking
 ◦ After reaching this feedrate, the movement will be stopped
+
+• void switchStep()
+◦ Switch on step pin from low to high or high to low ignoring all parameters excepting allowed-state
