@@ -15,8 +15,8 @@ class Stepper
   void init(byte stepPin, byte dirPin, byte enablePin);
 
   void setDir(byte direction); // 0/1
-  void setEnabled(boolean enabled);
   void setAllowed(boolean allowed);
+  void setEnabled(boolean enabled);
   void setStepState(boolean state);
   void setFeedrate(float f); // m/s
   void setStopFeedrate(float f); // m/s
@@ -27,6 +27,7 @@ class Stepper
 
   boolean halfStep();
 
+  boolean getAllowed();
   boolean getEnabled();
   boolean getOnPosition();
   double getPosition();
